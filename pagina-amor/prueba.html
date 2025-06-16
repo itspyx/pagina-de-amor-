@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Para Amid Flores 💖</title>
+  <style>
+    body {
+      font-family: 'Georgia', serif;
+      background-color: #fff0f5;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      color: #333;
+    }
+
+    header {
+      background-color: #c71585;
+      color: white;
+      padding: 30px 20px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 36px;
+    }
+
+    header p {
+      font-size: 18px;
+      margin-top: 10px;
+    }
+
+    .carousel {
+      position: relative;
+      max-width: 500px;
+      margin: 30px auto;
+    }
+
+    .carousel img {
+      width: 100%;
+      border-radius: 20px;
+      display: none;
+      box-shadow: 0 0 15px #ccc;
+      transition: opacity 0.5s ease-in-out;
+    }
+
+    .carousel img.active {
+      display: block;
+    }
+
+    .buttons {
+      margin-top: 15px;
+    }
+
+    button {
+      background-color: #c71585;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      margin: 5px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #a10e63;
+    }
+
+    .mensaje {
+      max-width: 700px;
+      margin: 30px auto;
+      font-size: 18px;
+      padding: 20px;
+      background: #ffe4ec;
+      border-radius: 20px;
+      box-shadow: 0 0 10px #e0bcd4;
+      line-height: 1.6;
+      min-height: 220px; /* para evitar que cambie tamaño al animar texto */
+      white-space: pre-wrap; /* para respetar saltos de línea */
+    }
+
+    footer {
+      margin-top: 40px;
+      padding: 20px;
+      font-size: 14px;
+      color: #999;
+    }
+
+    /* Estilos y animación para las flores */
+    .rosa {
+      position: fixed;
+      top: -50px;
+      font-size: 24px;
+      pointer-events: none;
+      animation: caer 5s linear forwards;
+      z-index: 9999;
+      user-select: none;
+    }
+
+    @keyframes caer {
+      to {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* Contador estilo */
+    #contador {
+      font-size: 20px;
+      margin: 20px auto;
+      color: #c71585;
+      font-weight: bold;
+      user-select: none;
+    }
+
+    /* Botón frases */
+    #btnFrase {
+      background-color: #a10e63;
+      margin-top: 15px;
+    }
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Para Amid Flores 💕</h1>
+    <p>6 meses de amor, recuerdos y promesas</p>
+  </header>
+
+  <div id="contador">Calculando tiempo juntos...</div>
+
+  <div class="carousel">
+    <img src="foto1.JPG" alt="Foto 1" class="active" />
+    <img src="foto2.JPG" alt="Foto 2" />
+    <img src="foto3.JPG" alt="Foto 3" />
+    <img src="foto4.JPG" alt="Foto 4" />
+    <img src="foto5.JPG" alt="Foto 5" />
+    <img src="foto6.JPG" alt="Foto 6" />
+    <img src="foto7.JPG" alt="Foto 7" />
+    <img src="foto8.JPG" alt="Foto 8" />
+    <img src="foto9.JPG" alt="Foto 9" />
+    <img src="foto10.JPG" alt="Foto 10" />
+    <img src="foto11.JPG" alt="Foto 11" />
+    <img src="foto12.JPG" alt="Foto 12" />
+    <img src="foto13.JPG" alt="Foto 13" />
+    <img src="foto14.JPG" alt="Foto 14" />
+    <img src="foto15.JPG" alt="Foto 15" />
+    <img src="foto16.JPG" alt="Foto 16" />
+    <img src="foto17.JPG" alt="Foto 17" />
+  </div>
+
+  <div class="buttons">
+    <button onclick="prev()">⟵ Anterior</button>
+    <button onclick="next()">Siguiente ⟶</button>
+  </div>
+
+  <div class="mensaje" id="mensajeTexto"></div>
+
+  <button id="btnFrase">Mostrar frase de amor</button>
+
+  <footer>
+    Hecho con amor por Emilio M • Junio 2025
+  </footer>
+
+  <script>
+    const images = document.querySelectorAll('.carousel img');
+    let currentIndex = 0;
+
+    function showImage(index) {
+      images.forEach((img, i) => {
+        img.classList.toggle('active', i === index);
+      });
+    }
+
+    function next() {
+      currentIndex = (currentIndex + 1) % images.length;
+      showImage(currentIndex);
+    }
+
+    function prev() {
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      showImage(currentIndex);
+    }
+
+    // Emojis de flores: rosa, girasol, gerbera, tulipán
+    const flores = ['🌹', '🌻', '🌼', '🌷'];
+
+    function crearFlor() {
+      const flor = document.createElement('div');
+      flor.classList.add('rosa'); // Reutilizamos clase para animación
+      flor.innerText = flores[Math.floor(Math.random() * flores.length)];
+      flor.style.left = Math.random() * 100 + 'vw';
+      flor.style.animationDuration = (Math.random() * 3 + 2) + 's';
+      document.body.appendChild(flor);
+
+      setTimeout(() => {
+        flor.remove();
+      }, 5000);
+    }
+
+    setInterval(crearFlor, 500);
+
+    // 7. Contador de aniversario
+    const contador = document.getElementById('contador');
+    // Fecha de inicio de relación (ajusta según la fecha exacta)
+    const fechaInicio = new Date('2024-12-16T00:00:00'); 
+
+    function actualizarContador() {
+      const ahora = new Date();
+      let diff = ahora - fechaInicio; // en ms
+
+      const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+      diff -= dias * (1000 * 60 * 60 * 24);
+
+      const horas = Math.floor(diff / (1000 * 60 * 60));
+      diff -= horas * (1000 * 60 * 60);
+
+      const minutos = Math.floor(diff / (1000 * 60));
+      diff -= minutos * (1000 * 60);
+
+      const segundos = Math.floor(diff / 1000);
+
+      contador.textContent = `Llevamos juntos ${dias} días, ${horas} horas, ${minutos} minutos y ${segundos} segundos 💖`;
+    }
+
+    setInterval(actualizarContador, 1000);
+    actualizarContador();
+
+    // 2. Efecto máquina de escribir para la carta
+    const mensajeTexto = document.getElementById('mensajeTexto');
+
+    const textoCarta = `
+Para ti, que iluminas mi mundo
+
+Amor mío, hoy celebro cada instante a tu lado, cada risa compartida y cada silencio cómodo que solo tú sabes llenar. No importa lo que tengamos o lo que falte, porque contigo todo es suficiente.
+
+Desde que llegaste, mi vida cambió de color y de sentido. Eres esa calma en mis días agitados y la chispa que enciende mi corazón. No necesito promesas grandiosas, solo tus manos entre las mías y la certeza de que estamos juntos.
+
+Gracias por ser mi compañía, mi apoyo, y mi alegría. Gracias por quererme tal como soy, con mis fallas y mis sueños. A tu lado, quiero construir un camino lleno de momentos sencillos y auténticos.
+
+Te amo hoy, mañana y siempre.
+
+— Emilio
+`.trim();
+
+    // Función para escribir texto letra a letra
+    function escribirTexto(texto, elemento, velocidad = 40) {
+      elemento.textContent = '';
+      let i = 0;
+      const intervalo = setInterval(() => {
+        elemento.textContent += texto.charAt(i);
+        i++;
+        if (i >= texto.length) clearInterval(intervalo);
+      }, velocidad);
+    }
+
+    // Iniciar escritura al cargar la página
+    escribirTexto(textoCarta, mensajeTexto);
+
+    // 10. Frases aleatorias de amor
+    const frases = [
+      "Eres mi hoy y todos mis mañanas.",
+      "Contigo, cada momento es un sueño hecho realidad.",
+      "Amar es encontrar en la felicidad de otro tu propia felicidad.",
+      "Eres la razón por la que sonrío sin motivo.",
+      "Nuestro amor es el mejor regalo que la vida me ha dado.",
+      "Cada día a tu lado es mi aventura favorita.",
+      "En tus ojos encuentro mi lugar favorito.",
+      "Te amo más allá de las palabras."
+    ];
+
+    const btnFrase = document.getElementById('btnFrase');
+
+    btnFrase.addEventListener('click', () => {
+      // Detener cualquier texto en máquina de escribir antes de mostrar frase
+      mensajeTexto.textContent = '';
+      const frase = frases[Math.floor(Math.random() * frases.length)];
+      escribirTexto(frase, mensajeTexto, 50);
+    });
+
+    // Cambio automático de fotos cada 4 segundos
+    setInterval(next, 4000);
+
+  </script>
+
+</body>
+</html>
+
